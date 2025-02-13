@@ -1,4 +1,4 @@
-package org.univ_paris8.iut.montreuil.qdev.tp202x.grX.jeuQuizz;
+package org.univ_paris8.iut.montreuil.qdev.tp2025.gr09.LaQuizzine;
 
 /**
  * Hello world!
