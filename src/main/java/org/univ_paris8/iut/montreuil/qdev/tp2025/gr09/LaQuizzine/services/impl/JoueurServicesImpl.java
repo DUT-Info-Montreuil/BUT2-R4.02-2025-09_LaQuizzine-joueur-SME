@@ -12,7 +12,7 @@ import org.univ_paris8.iut.montreuil.qdev.tp2025.gr09.LaQuizzine.utils.constants
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr09.LaQuizzine.utils.enums.LangueEnum;
 public class JoueurServicesImpl implements IJoueurServices {
 
-    List<JoueurDTO> joueurDTOList = new ArrayList<>();
+    List<JoueurDTO> joueur_existant = new ArrayList<>();
 
     @Override
     public ReponseAjouterJoueurDTO ajouterJoueur(String prenom, String pseudo, int annee_naissance, String centre_interets, int langue) {
@@ -33,7 +33,7 @@ public class JoueurServicesImpl implements IJoueurServices {
         JoueurDTO newJoueur = new JoueurDTO(prenom, pseudo, annee_naissance, centre_interets, langue);
 
         if (liste_erreurs.isEmpty()) {
-            joueurDTOList.add(newJoueur);
+            joueur_existant.add(newJoueur);
             return new ReponseAjouterJoueurDTO(liste_erreurs, newJoueur);
         }
         else
