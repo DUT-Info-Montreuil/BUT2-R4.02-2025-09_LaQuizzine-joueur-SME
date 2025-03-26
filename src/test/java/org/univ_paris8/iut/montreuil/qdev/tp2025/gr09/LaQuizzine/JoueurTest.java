@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr09.LaQuizzine.dto.JoueurDTO;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr09.LaQuizzine.dto.ReponseAjouterJoueurDTO;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr09.LaQuizzine.mock.*;
+import org.univ_paris8.iut.montreuil.qdev.tp2025.gr09.LaQuizzine.services.impl.JoueurServicesImpl;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr09.LaQuizzine.services.interfaces.IJoueurServices;
 import org.univ_paris8.iut.montreuil.qdev.tp2025.gr09.LaQuizzine.utils.constants.JoueurConstants;
 
@@ -19,25 +20,25 @@ public class JoueurTest {
     List<String> liste_erreurs;
     IJoueurServices service;
     ReponseAjouterJoueurDTO reponse;
-    /*
+
     @BeforeEach
     void setUp(){
-        service = JoueurServicesImpl();
+        service = new JoueurServicesImpl();
     }
-    */
+
     @Test
     void AjouterJoueurMultipleErreursTest(){
 
         //Test quand Erreur Prenom & Erreur Annee naissance
         liste_erreurs = Arrays.asList(JoueurConstants.ERREUR_PRENOM, JoueurConstants.ERREUR_ANNEE_NAISSANCE);
-        service = new AjouterJoueurPrenomEtAnneeNaissanceKOMock();
+//        service = new AjouterJoueurPrenomEtAnneeNaissanceKOMock();
         reponse = service.ajouterJoueur("4", "Justin", -2, "gaston, lagaffe", 1);
         assertIterableEquals(liste_erreurs, reponse.getListeErreur(), "Erreur: La liste d'erreurs ne contient pas exactement Erreur_Prenom & Erreur_Annee_Naissance");
         assertNull(reponse.getJoueur(), "Erreur: Le joueur devrait être null");
 
         //Test quand Toutes les erreurs sont réunies (le boss final)
         liste_erreurs = Arrays.asList(JoueurConstants.ERREUR_PRENOM, JoueurConstants.ERREUR_PSEUDO, JoueurConstants.ERREUR_ANNEE_NAISSANCE, JoueurConstants.ERREUR_CENTRE_INTERETS, JoueurConstants.ERREUR_LANGUES);
-        service = new AjouterJoueurToutesErreursKOMock();
+//        service = new AjouterJoueurToutesErreursKOMock();
         reponse = service.ajouterJoueur("4", "", -2, "gaston, lagaffe,", 18);
         assertIterableEquals(liste_erreurs, reponse.getListeErreur(), "Erreur: La liste d'erreurs ne contient pas toutes les erreurs");
         assertNull(reponse.getJoueur(), "Erreur: Le joueur devrait être null");
@@ -46,7 +47,7 @@ public class JoueurTest {
     @Test
     void AjouterJoueurPrenomKOTest(){
         liste_erreurs = Arrays.asList(JoueurConstants.ERREUR_PRENOM);
-        service = new AjouterJoueurPrenomKOMock();
+//        service = new AjouterJoueurPrenomKOMock();
 
         //Test quand Prenom contient un chiffre
         reponse = service.ajouterJoueur("4justin", "Justin", 2012, "gaston, lagaffe", 1);
@@ -67,7 +68,7 @@ public class JoueurTest {
     @Test
     void AjouterJoueurPseudoKOTest(){
         liste_erreurs = Arrays.asList(JoueurConstants.ERREUR_PSEUDO);
-        service = new AjouterJoueurPseudoKOMock();
+//        service = new AjouterJoueurPseudoKOMock();
 
         //Test quand pseudo commence par un chiffre
         reponse = service.ajouterJoueur("justin", "4Justin", 2012, "gaston, lagaffe", 1);
@@ -82,7 +83,7 @@ public class JoueurTest {
     @Test
     void AjouterJoueurAucuneErreurTest(){
         liste_erreurs = Arrays.asList();
-        service = new AjouterJoueurAucuneErreurKOMock();
+//        service = new AjouterJoueurAucuneErreurKOMock();
 
         //Test quand cas normal
         reponse = service.ajouterJoueur("justin", "justinien_de_barbelote", 2012, "gaston, lagaffe", 1);
@@ -102,7 +103,7 @@ public class JoueurTest {
     @Test
     void AjouterJoueurAnneeNaissanceTest(){
         liste_erreurs = Arrays.asList(JoueurConstants.ERREUR_ANNEE_NAISSANCE);
-        service = new AjouterJoueurAnneeNaissanceKOMock();
+//        service = new AjouterJoueurAnneeNaissanceKOMock();
 
         //Test quand annee naissance est négatif
         reponse = service.ajouterJoueur("justin", "in_just", -20, "gaston, lagaffe", 1);
@@ -118,7 +119,7 @@ public class JoueurTest {
     @Test
     void AjouterJoueurCentreInteretsTest(){
         liste_erreurs = Arrays.asList(JoueurConstants.ERREUR_CENTRE_INTERETS);
-        service = new AjouterJoueurCentreInteretsKOMock();
+//        service = new AjouterJoueurCentreInteretsKOMock();
 
         //Test quand Centre interets finit par ","
         reponse = service.ajouterJoueur("justin", "in_just", 2500, "gaston, lagaffe,", 1);
@@ -129,7 +130,7 @@ public class JoueurTest {
     @Test
     void AjouterJoueurLangueTest(){
         liste_erreurs = Arrays.asList(JoueurConstants.ERREUR_LANGUES);
-        service = new AjouterJoueurLanguesKOMock();
+//        service = new AjouterJoueurLanguesKOMock();
 
         //Test quand langue à 0
         reponse = service.ajouterJoueur("justin", "in_just", 1900, "gaston, lagaffe", 0);
@@ -145,7 +146,7 @@ public class JoueurTest {
     @Test
     void AjouterJoueurExistantTest(){
         liste_erreurs = Arrays.asList();
-        service = new AjouterJoueurPseudoX2KOMock();
+//        service = new AjouterJoueurPseudoX2KOMock();
 
         //Ajout de deux fois le meme pseudo
         reponse = service.ajouterJoueur("mariel", "justdopo", 2014, "", 1);

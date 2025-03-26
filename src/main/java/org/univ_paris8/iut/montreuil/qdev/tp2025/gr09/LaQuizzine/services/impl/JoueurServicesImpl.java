@@ -23,6 +23,10 @@ public class JoueurServicesImpl implements IJoueurServices {
 
         if (pseudo.isBlank() || pseudo.charAt(0) >= '0' && pseudo.charAt(0) <= '9') liste_erreurs.add(JoueurConstants.ERREUR_PSEUDO);
 
+        for (JoueurDTO joueurDTO : joueur_existant) {
+            if (pseudo.equals(joueurDTO.getPseudo())) liste_erreurs.add(JoueurConstants.ERREUR_PSEUDO_EXISTE);
+        }
+
         if (annee_naissance < 1900) liste_erreurs.add(JoueurConstants.ERREUR_ANNEE_NAISSANCE);
 
         if (centre_interets.endsWith(",")) liste_erreurs.add(JoueurConstants.ERREUR_CENTRE_INTERETS);
