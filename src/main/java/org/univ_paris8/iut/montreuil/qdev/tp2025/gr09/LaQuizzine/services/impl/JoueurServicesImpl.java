@@ -19,10 +19,9 @@ public class JoueurServicesImpl implements IJoueurServices {
         List<String> liste_erreurs = new ArrayList<>();
 
 
-        if (prenom.matches(".*[^a-zA-Z].*") || prenom.isBlank()) liste_erreurs.add(JoueurConstants.ERREUR_PRENOM);
+        if (prenom.isBlank() || prenom.matches(".*[^a-zA-Z].*")) liste_erreurs.add(JoueurConstants.ERREUR_PRENOM);
 
-        if (pseudo.charAt(0) >= '0' && pseudo.charAt(0) <= '9'
-                || pseudo.isBlank()) liste_erreurs.add(JoueurConstants.ERREUR_PSEUDO);
+        if (pseudo.isBlank() || pseudo.charAt(0) >= '0' && pseudo.charAt(0) <= '9') liste_erreurs.add(JoueurConstants.ERREUR_PSEUDO);
 
         if (annee_naissance < 1900) liste_erreurs.add(JoueurConstants.ERREUR_ANNEE_NAISSANCE);
 
