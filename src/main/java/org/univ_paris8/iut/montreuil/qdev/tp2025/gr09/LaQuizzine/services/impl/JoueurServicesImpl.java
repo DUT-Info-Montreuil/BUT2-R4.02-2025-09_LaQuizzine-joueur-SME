@@ -14,6 +14,10 @@ public class JoueurServicesImpl implements IJoueurServices {
 
     List<JoueurDTO> joueur_existant = new ArrayList<>();
 
+    public List<JoueurDTO> getJoueurExistant() {
+        return joueur_existant;
+    }
+
     @Override
     public ReponseAjouterJoueurDTO ajouterJoueur(String prenom, String pseudo, int annee_naissance, String centre_interets, int langue) {
         List<String> liste_erreurs = new ArrayList<>();
